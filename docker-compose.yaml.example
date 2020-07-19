@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  eth_scrapper:
+    container_name: eth_scrapper
+    image: eth_scrapper:latest
+    environment:
+      - ETH_WALLET=0x8fD00f170FDf3772C5ebdCD90bF257316c69BA45
+      - SHEET_NAME=NombreDelDocumento
+      - WORKSHEET_NAME=NombreDeLaHoja
+    volumes:
+      - $PWD/creds.json:/app/creds.json
