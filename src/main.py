@@ -23,7 +23,7 @@ scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/au
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 creds = ServiceAccountCredentials.from_json_keyfile_name(
-    dir_path+"/../creds.json", scope)
+    dir_path+"/creds.json", scope)
 client = gspread.authorize(creds)
 
 sheet = client.open(os.environ['SHEET_NAME']).worksheet(
@@ -42,11 +42,11 @@ print("Última fecha:", date_last)
 
 now = datetime.now()
 
-lastValue = sheet.cell(num_rows - 1, 3).value
+lastValue = sheet.cell(num_rows, 3).value
 value = value + " ETH"
 print("Último valor: "+lastValue)
 print("Nuevo  valor: "+value)
 
 if (value != lastValue):
-    sheet.update_cell(num_rows, 1, now.strftime("%d/%b/%Y"))
-    sheet.update_cell(num_rows, 3, value.strip(" ETH"))
+    sheet.update_cell(num_rows+1, 1, now.strftime("%d/%b/%Y"))
+    sheet.update_cell(num_rows+1, 3, value.strip(" ETH"))
