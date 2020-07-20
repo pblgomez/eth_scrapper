@@ -5,17 +5,16 @@ from datetime import datetime, timedelta
 
 from bs4 import BeautifulSoup
 from requests import get as url_get
-from pandas import read_html
 
 eth_wallet = os.environ['ETH_WALLET']
 print("Cheking ethereum wallet: "+eth_wallet)
 url = 'https://etherscan.io/txsInternal?a='+eth_wallet
 header = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64)'}
 r = url_get(url, headers=header)
-dfs = read_html(r.text)
-for df in dfs:
-    value = df.head(1)['Value']
-    value = value.item().strip(" Ether")
+soup = BeautifulSoup(r.text, "html.parser")
+latest_value = soup("td")[8:9]
+latest_value= str(latest_value[0].text).strip(" Ether")
+print(latest_value)
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
@@ -43,7 +42,7 @@ print("Última fecha:", date_last)
 now = datetime.now()
 
 lastValue = sheet.cell(num_rows, 3).value
-value = value + " ETH"
+value = latest_value + " ETH"
 print("Último valor: "+lastValue)
 print("Nuevo  valor: "+value)
 

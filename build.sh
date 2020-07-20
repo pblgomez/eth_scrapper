@@ -1,4 +1,6 @@
 #!/usr/bin/env sh
 
-pipenv lock -r > requirements.txt
-docker build -t pablogomez/eth_scrapper:latest .
+
+poetry export -f requirements.txt -o requirements.txt
+
+docker build -t pablogomez/${PWD##*/} .

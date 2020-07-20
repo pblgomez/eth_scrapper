@@ -9,4 +9,4 @@ services:
       - SHEET_NAME=NombreDelDocumento
       - WORKSHEET_NAME=NombreDeLaHoja
     volumes:
-      - $PWD/creds.json:/app/creds.json
+      - /path/to/creds.json:/app/creds.json
