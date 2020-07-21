@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from requests import get as url_get
 
+
 eth_wallet = os.environ['ETH_WALLET']
 print("Cheking ethereum wallet: "+eth_wallet)
 url = 'https://etherscan.io/txsInternal?a='+eth_wallet
@@ -17,7 +18,7 @@ latest_value= str(latest_value[0].text).strip(" Ether")
 print(latest_value)
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
-         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+        "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))

@@ -1,3 +1,4 @@
 creds.json
 .vscode
 docker-compose.yaml
+src/__pycache__/*
