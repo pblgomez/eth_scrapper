@@ -13,8 +13,7 @@ url = 'https://etherscan.io/txsInternal?a='+eth_wallet
 header = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64)'}
 r = url_get(url, headers=header)
 soup = BeautifulSoup(r.text, "html.parser")
-latest_value = soup("td")[8:9]
-latest_value= str(latest_value[0].text).strip(" Ether")
+latest_value = soup("td")[8].text.strip(" Ether")
 print(latest_value)
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
